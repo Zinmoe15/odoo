@@ -1,0 +1,71 @@
+<odoo>
+	<data>
+		<act_window id="action_employment_history_view"
+			name="Employment History"
+			res_model="employment.history.model"
+			view_mode="tree,form" />
+		
+		<menuitem id="employment_history"
+			name="Employment_History"
+			parent="background_education"
+			action="action_employment_history_view" />
+
+		<record id="tree_employment_history_view" model="ir.ui.view">
+			<field name="name">Tree Employment History</field>
+			<field name="model">employment.history.model</field>
+			<field name="arch" type="xml">
+				<tree string="Employment History">
+					<field name="name"/>
+					<field name="cv_image"/>
+					<field name="education"/>
+					<field name="other_experience"/>
+					<field name="my_project"/>
+					<field name="interest"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="form_employment_history_view" model="ir.ui.view">
+			<field name="name">Form Employmant History</field>
+			<field name="model">employment.history.model</field>
+			<field name="arch" type="xml">
+				<form string="Form Employment History">
+					<sheet>
+						<field name="cv_image" widget="image" class="oe_avatar"/>
+						<div class="oe_title">
+							<label for="name"/>
+							<h1>
+								<field name="name" place_holder="Enter Your Name" required="True"/>
+							</h1>
+							<field name="job_type"/>
+						</div>
+							<notebook>
+								<page string="Employment Information">
+									<group string="Employment">
+										<group>
+											<field name="education"/>
+										</group>
+										<group>
+											<field name="other_experience"/>
+										</group>
+									</group>
+									<group>
+										<field name="my_project"/>
+									</group>
+								</page>
+								<page string="My Hobby">
+									<field name="interest"/>
+								</page>
+							</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="employment_follower"/>
+						<field name="activity_ids" widget="employment_activity"/>
+						<field name="message_ids" widget="employment_message"/>
+					</div>
+				</form>
+			</field>
+		</record>
+
+	</data>
+</odoo>

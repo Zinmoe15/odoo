@@ -1,0 +1,89 @@
+<odoo>
+	<data>
+
+		<record id="kanban_background_education" model="ir.ui.view">
+			<field name="name">kanban_background_education</field>
+			<field name="model">background.education.model</field>
+			<field name="arch" type="xml">
+				<kanban class="o_kanban_mobile">
+					<field name="id"/>
+					<field name="cv_image"/>
+					<field name="name"/>
+					<field name="education"/>
+					<templates>
+						<t t-name="kanban-box">
+							<div t-attf-class="oe_kanban_global_click">
+								<div class="o_kanban_image">
+									<img t-att-src="kanban_image('background.education.model', 'cv_image', record.id.raw_value)"/>
+								</div>
+								<div class="o_kangan_details">
+									<field name="name"/><br/>
+									<field name="education"/>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+		<act_window id="action_background_education"
+			name="background Education"
+			res_model="background.education.model"
+			view_mode="kanban,tree,form" />
+		
+		<menuitem id="background_education"
+			name="background_education"
+			parent="zinmoe_view"
+			sequence="30" />
+
+		<menuitem id="cv_education"
+			name="CV Education"
+			parent="background_education"
+			action="action_background_education"
+			sequence="10" />
+
+		<record id="tree_background_education" model="ir.ui.view">
+			<field name="name">Tree Background Education</field>
+			<field name="model">background.education.model</field>
+			<field name="arch" type="xml">
+				<tree string="tree_background_education">
+					<field name="name"/>
+					<field name="cv_image"/>
+					<field name="education"/>
+					<field name="other_experience"/>
+					<field name="my_project"/>
+					<field name="interest"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="form_background_education" model="ir.ui.view">
+			<field name="name">form.background.education</field>
+			<field name="model">background.education.model</field>
+			<field name="arch" type="xml">
+				<form string="form_background_education">
+					<sheet>
+						<field name="cv_image" widget="image" class="oe_avatar"/>
+						<div class="oe_title">
+							<label for="name"/>
+							<h1>
+								<field name="name" place_holder="Enter Your Name" required="True"/>
+							</h1>
+							<field name="job_type"/>
+						</div>
+						<group>
+							<field name="education"/>
+							<field name="other_experience"/>
+						</group>
+						<group>
+							<field name="my_project"/>
+							<field name="interest"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+	</data>
+</odoo>

@@ -1,0 +1,120 @@
+<odoo>
+	<data>
+
+		<record id="kanban_singapore_view" model="ir.ui.view">
+			<field name="name">Kanban Singapore View</field>
+			<field name="model">singapore.model</field>
+			<field name="arch" type="xml">
+				<kanban class="oe_kanban_mobile">
+					<field name="id"/>
+					<field name="image"/>
+					<field name="name"/>
+					<field name="dob"/>
+					<field name="pob"/>
+					<field name="nationality"/>
+					<templates>
+						<t t-name="kanban-box">
+							<div t-attf-class="oe_kanban_global_click">
+								<div class="o_kanban_image">
+									<img t-att-src="kanban_image('singapore.model', 'image', 'record.id.raw_value')" />
+								</div>
+								<div class="oe_kanban_details">
+									<field name="name"/><br/>
+									<field name="dob"/><br/>
+									<field name="pob"/><br/>
+									<field name="nationality"/>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+		<act_window id="action_singapore_view"
+			name="Singapore"
+			res_model="singapore.model"
+			view_mode="kanban,tree,form" />
+		
+		<menuitem id="singapore_sample"
+			name="Singapore Sample"
+			parent="myanmar_sample"
+			action="action_singapore_view"
+			sequence="30" />
+
+		<record id="tree_singapore_view" model="ir.ui.view">
+			<field name="name">Tree Singapore View</field>
+			<field name="model">singapore.model</field>
+			<field name="arch" type="xml">
+				<tree string="Tree View">
+					<field name="name"/>
+					<field name="image"/>
+					<field name="dob"/>
+					<field name="pob"/>
+					<field name="race"/>
+					<field name="religion"/>
+					<field name="nationality"/>
+					<field name="job_position"/>
+					<field name="phone"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="form_singapore_view" model="ir.ui.view">
+			<field name="name">Form View</field>
+			<field name="model">singapore.model</field>
+			<field name="arch" type="xml">
+				<form string="Form View">
+					<sheet>
+						<field name="image" widget="Image" class="oe_avatar"/>
+						<div class="oe_title">
+							<label for="name"/>
+							<h1>
+								<field name="name" place_holder="Enter Your Name" required="True"/>
+							</h1>
+							<field name="job_type"/>
+						</div>
+
+						<group>
+							<field name="nationality"/>
+						</group>
+							
+						<group>
+							<group>
+								<field name="dob"/>
+								<field name="pob"/>
+							</group>
+							<group>
+								<field name="race"/>
+								<field name="religion"/>
+							</group>
+						</group>
+							
+						<group>
+							<field name="job_position"/>
+							<field name="phone"/>
+						</group>
+
+						<notebook>
+							<page string="Education Foundation">
+								<separator string="Education Foundation"/>
+								<field name="education_foundation_lines"/>
+							</page>
+
+							<page string="Employee Admin">
+								<separator string="Employee Admin"/>
+								<field name="employee_admin_lines"/>
+							</page>
+						</notebook>
+
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="singapore_follower"/>
+						<field name="activity_ids" widget="singapore_activity"/>
+						<field name="message_ids" widget="singapore_message"/>
+					</div>
+				</form>
+			</field>
+		</record>
+	</data>
+</odoo>

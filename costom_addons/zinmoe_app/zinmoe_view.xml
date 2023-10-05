@@ -1,0 +1,131 @@
+<odoo>
+	<data>
+
+		<record id="kanban_zinmoe_view" model="ir.ui.view">
+			<field name="name">kanban.zinmoe.view</field>
+			<field name="model">zinmoe.model</field>
+			<field name="arch" type="xml">
+				<kanban class="o_kanban_mobile">
+					<field name="id"/>
+					<field name="cv_image"/>
+					<field name="name"/>
+					<field name="nrc"/>
+					<field name="dob"/>
+					<templates>
+						<t t-name="kanban-box">
+							<div t-attf-class="oe_kanban_global_click">
+								<div class="o_kanban_image">
+									<img t-att-src="kanban_image('zinmoe.model', 'cv_image', record.id.raw_value)"/>
+								</div>
+								<div clas="oe_kanban_details">
+									<field name="name"/>
+									<field name="nrc"/>
+									<field name="dob"/>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+		<act_window id="action_zinmoe_view"
+			name="zinmoe"
+			res_model="zinmoe.model"
+			view_mode="kanban,tree,form" />
+
+		
+		<menuitem id="zinmoe_view"
+			name="zinmoe" />
+
+		<menuitem id="personal_view_menu"
+			name="Personal View Menu"
+			parent="zinmoe_view"
+			sequence="10" />
+
+		<menuitem id="zinmoe_education"
+			name="zinmoe_education"
+			parent="personal_view_menu"
+			action="action_zinmoe_view"
+			sequence="20" />
+
+<!-- Tree_View -->
+		<record id="tree_zinmoe_view" model="ir.ui.view">
+			<field name="name">tree_zinmoe_view</field>
+			<field name="model">zinmoe.model</field>
+			<field name="arch" type="xml">
+				<tree string="zinmoe_cv">
+					<field name="name" />
+					<field name="cv_image" />
+					<field name="nrc" />
+					<field name="dob" />
+					<field name="nationality" />
+					<field name="race" />
+					<field name="religion" />
+					<field name="sex" />
+					<field name="height" />
+					<field name="weight" />
+					<field name="marital_status" />
+					<field name="education" />
+					<field name="language" />
+					<field name="phone" />
+				</tree>
+			</field>
+		</record>
+
+<!-- Form View -->
+		<record id="form_zinmoe_view" model="ir.ui.view">
+			<field name="name">form_zinmoe_view</field>
+			<field name="model">zinmoe.model</field>
+			<field name="arch" type="xml">
+				<form string="zinmoe_cv">
+					<sheet>
+						<field name="cv_image" widget="image" class="oe_avatar" />
+						<div class="oe_title">
+							<label for="name" />
+							<h1>
+								<field name="name" placeholder="Enter Your Name" required="True"/>
+							</h1>
+							<field name="job_type" />
+						</div>
+						<notebook>
+							<page string="Contact Information">
+								<group>
+									<field name="name" />
+									<field name="phone" />
+									<field name="nrc" />
+									<field name="dob" />
+								</group>
+							</page>
+							<page string="Personal Information">
+								<group>
+									<group>
+										<field name="nationality" />
+										<field name="race" />
+										<field name="religion" />
+									</group>
+									<group>
+										<field name="sex" />
+										<field name="height" />
+										<field name="weight" />
+									</group>
+								</group>
+								<group>
+									<field name="marital_status" />
+									<field name="education" />
+									<field name="language" />
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="zinmoe_follower" />
+						<field name="activity_ids" widget="zinmoe_activity" />
+						<field name="message_ids" widget="zinmoe_message" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+	</data>
+</odoo>

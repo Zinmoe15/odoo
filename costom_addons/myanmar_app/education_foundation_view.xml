@@ -1,0 +1,61 @@
+<odoo>
+	<data>
+		<act_window id="action_education_blue"
+			name="Education Blue"
+			res_model="education.foundation.model"
+			view_mode="tree,form" />
+		
+		<menuitem id="education_foundation_view"
+			name="Education Foundation View"
+			parent="myanmar_view" />
+
+		<menuitem id="education_high_view"
+			name="Education High View"
+			parent="education_foundation_view"
+			action="action_education_blue"
+			sequence="10" />
+
+		<record id="tree_education_foundation_view" model="ir.ui.view">
+			<field name="name">tree.education.foundation.view</field>
+			<field name="model">education.foundation.model</field>
+			<field name="arch" type="xml">
+				<tree string="Tree View">
+					<field name="name"/>
+					<field name="cv_image"/>
+					<field name="education"/>
+					<field name="level"/>
+					<field name="skill"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="form_education_foundation_view" model="ir.ui.view">
+			<field name="name">form.education.foundation.view</field>
+			<field name="model">education.foundation.model</field>
+			<field name="arch" type="xml">
+				<form string="Form View">
+					<sheet>
+						<field name="cv_image" widget="image" class="oe_avatar"/>
+						<div class="oe_title">
+							<label for="name"/>
+							<h1>
+								<field name="name" place_holder="Enter Your Name" required="True"/>
+							</h1>
+							<field name="job_type"/>
+						</div>
+						<notebook>
+							<page string="Education Background">
+								<group>
+									<field name="education"/>
+									<field name="level"/>
+									<field name="skill"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+	</data>
+</odoo>

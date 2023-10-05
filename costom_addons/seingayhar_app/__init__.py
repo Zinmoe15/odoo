@@ -1,0 +1,1 @@
+from . import seingayhar_model

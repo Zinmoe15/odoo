@@ -1,0 +1,29 @@
+<odoo>
+	<data>
+		<record id="tree_jdonut_simple" model="ir.ui.view">
+			<field name="name">tree.jdonut.simple</field>
+			<field name="model">jdonut.model</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name"/>
+					<field name="shop_name"/>
+					<field name="price"/>
+					<field name="quantity"/>
+					<field name="total_price"/>
+				</tree>
+			</field>
+		</record>
+
+		<act_window id="action_jdonut_simple"
+			name="Jdonut"
+			res_model="jdonut.model"
+			view_mode="tree,form" />
+		
+		<menuitem id="jdonut_simple" 
+			name="Jdonut_simple" />
+
+		<menuitem id="jdonut_view" name="Jdonut_view"
+			parent="jdonut_simple"
+			action="action_jdonut_simple" />
+	</data>
+</odoo>

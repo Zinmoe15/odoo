@@ -1,0 +1,144 @@
+<odoo>
+	<data>
+
+		<record id="kanban_kyaw_view" model="ir.ui.view">
+			<field name="name">kanban.kyaw.view</field>
+			<field name="model">kyaw.model</field>
+			<field name="arch" type="xml">
+				<kanban class="o_kanban_mobile">
+					<field name="id"/>
+					<field name="cv_image"/>
+					<field name="name"/>
+					<field name="nationality"/>
+					<field name="education"/>
+					<templates>
+						<t t-name="kanban-box">
+							<div t-attf-class="oe_kanban_global_click">
+								<div class="o_kanban_image">
+									<img t-att-src="kanban_image('kyaw.model', 'cv_image', record.id.raw_value)"/>
+								</div>
+								<div class="oe_kanban_details">
+									<field name="name"/>
+									<field name="nationality"/>
+									<field name="education"/>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+		<act_window id="action_kyaw_view"
+			name="kyaw view"
+			res_model="kyaw.model"
+			view_mode="kanban,tree,form" />
+		
+		<menuitem id="kyaw_education"
+			name="kyaw_education"
+			parent="personal_view_menu"
+			action="action_kyaw_view"
+			sequence="10" />
+
+		<record id="tree_kyaw_view" model="ir.ui.view">
+			<field name="name">tree.kyaw.view</field>
+			<field name="model">kyaw.model</field>
+			<field name="arch" type="xml">
+				<tree string="Tree Kyaw View">
+					<field name="name" />
+					<field name="cv_image" />
+					<field name="nrc" />
+					<field name="dob" />
+					<field name="nationality" />
+					<field name="race" />
+					<field name="religion" />
+					<field name="sex" />
+					<field name="height" />
+					<field name="weight" />
+					<field name="marital_status" />
+					<field name="education" />
+					<field name="language" />
+					<field name="phone" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="form_kyaw_view" model="ir.ui.view">
+			<field name="name">form.kyaw.view</field>
+			<field name="model">kyaw.model</field>
+			<field name="arch" type="xml">
+				<form string="form_kyaw_view">
+					<sheet>
+						<field name="cv_image" widget="image" class="oe_avatar" />
+						<div class="oe_title">
+							<label for="name" />
+							<h1>
+								<field name="name" place_holder="Enter Your Name" required="True" />
+							</h1>
+							<field name="job_type" />
+						</div>
+
+						<group string="Person Information">
+							<field name="name"/>
+							<field name="nrc"/>
+							<field name="dob"/>
+						</group>
+					
+						<group string="Nation Information">
+							<group>
+								<field name="nationality"/>
+								<field name="race"/>
+								<field name="religion"/>
+								<field name="sex"/>
+							</group>
+							<group string="Your Effort">
+								<field name="height"/>
+								<field name="weight"/>
+								<field name="marital_status"/>
+							</group>
+						</group>
+						<group string="Edution">
+							<field name="education"/>
+							<field name="language"/>
+							<field name="phone"/>
+						</group>
+						<group>
+							<field name="address"/>
+						</group>
+
+						<notebook>
+							<page string="Background Education">
+								<separator string="Background Education" />
+								<field name="background_education_lines"/>
+							</page>
+
+							<page string="Employment History">
+								<separator string="Employment History"/>
+								<field name="employment_history_lines"/>
+							</page>
+						</notebook>
+					</sheet>	
+						<div class="oe_chatter">
+							<field name="message_follower_ids" widget="kyaw_follower" />
+							<field name="activity_ids" widget="kyaw_activity" />
+							<field name="message_ids" widget="kyaw_message" />
+						</div>
+
+				</form>
+			</field>
+		</record>
+
+		<record id="search_kyaw_view" model="ir.ui.view">
+			<field name="name">search.kyaw.view</field>
+			<field name="model">kyaw.model</field>
+			<field name="arch" type="xml">
+				<search string="Search Kyaw View">
+					<field name="name"/>
+					<field name="nationality"/>
+					<field name="sex"/>
+				</search>
+			</field>
+		</record>
+
+	</data>
+</odoo>

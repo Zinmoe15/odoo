@@ -1,0 +1,49 @@
+<odoo>
+	<data>
+		<template id="myanmar_template">
+			<t t-call="web.html_container">
+				<t t-call="web.basic_layout">
+					<t t-foreach="docs" t-as="doc">
+						<table>
+							<thead>
+								<tr>
+									<th style="text-align:center; vartical-align:middle;">
+										<h1>CV Form</h1>
+									</th>
+									<th colspan="2" style="text-align:center: vartical-align:middle;">
+										<div style="height:2in; width:2in; border:2px solid blue;">
+											<span t-field="doc.image"
+												  t-options="{'widget': 'image', 'style': 'height:100%; width:100%;'}" />
+										</div>
+									</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<th style="width:2px;">Name</th>
+									<td colspan="2">: <span t-field="doc.name"/></td>
+								</tr>
+								<tr>
+									<th>Date of Birth</th>
+									<td colspan="2">: <span t-field="doc.dob"/></td>
+								</tr>
+								<tr>
+									<th>Palace of Birth</th>
+									<td colspan="2">: <span t-field="doc.pob"/></td>
+								</tr>
+							</tbody>
+						</table>
+					</t>
+				</t>
+			</t>
+		</template>
+		
+		<report id="myanmar_report"
+			model="myanmar.model"
+			string="Myanmar Report"
+			report_type="qweb-pdf"
+			name="myanmar_app.myanmar_template"
+			file="myanmar_app.myanmar_template" />
+	</data>
+</odoo>

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+myanmar,Myanmar,model_myanmar_model,,1,1,1,1
+
+singapore,Singapore,model_singapore_model,,1,1,1,1
+employee,Employee,model_employee_admin_model,,1,1,1,1
+education,Education,model_education_foundation_model,,1,1,1,1

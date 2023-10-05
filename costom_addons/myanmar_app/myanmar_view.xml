@@ -1,0 +1,148 @@
+<odoo>
+	<data>
+
+		<record id="kanban_myanmar_view" model="ir.ui.view">
+			<field name="name">Kanban Myanmar View</field>
+			<field name="model">myanmar.model</field>
+			<field name="arch" type="xml">
+				<kanban class="oe_kanban_mobile">
+					<field name="id"/>
+					<field name="image"/>
+					<field name="name"/>
+					<field name="dob"/>
+					<field name="pob"/>
+					<field name="nationality"/>
+					<templates>
+						<t t-name="kanban-box">
+							<div t-attf-class="oe_kanban_global_click">
+								<div class="o_kanban_image">
+									<img t-att-src="kanban_image('myanmar.model', 'image', 'record.id.raw_value')" />
+								</div>
+								<div class="oe_kanban_details">
+									<field name="name"/><br/>
+									<field name="dob"/><br/>
+									<field name="pob"/><br/>
+									<field name="nationality"/>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+		<act_window id="action_myanmar_view"
+			name="Myanmar"
+			res_model="myanmar.model"
+			view_mode="kanban,tree,form" />
+		
+		<menuitem id="myanmar_view"
+			name="Myanmar_View" />
+
+		<menuitem id="myanmar_sample"
+			name="Myanmar_Sample"
+			parent="myanmar_view"
+			action="action_myanmar_view"
+			sequence="10" />
+
+		<menuitem id="thai_sample"
+			name="Thai Sample"
+			parent="myanmar_sample"
+			action="action_myanmar_view"
+			sequence="20" />
+
+		<record id="tree_myanmar_view" model="ir.ui.view">
+			<field name="name">Tree Myanmar View</field>
+			<field name="model">myanmar.model</field>
+			<field name="arch" type="xml">
+				<tree string="Tree View">
+					<field name="name"/>
+					<field name="image"/>
+					<field name="dob"/>
+					<field name="pob"/>
+					<field name="race"/>
+					<field name="religion"/>
+					<field name="nationality"/>
+					<field name="job_position"/>
+					<field name="phone"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="form_myanmar_view" model="ir.ui.view">
+			<field name="name">Form View</field>
+			<field name="model">myanmar.model</field>
+			<field name="arch" type="xml">
+				<form string="Form View">
+					<header>
+						<button name="%(myanmar_app.myanmar_report)d" type="action"
+							string="Print PDF" class="oe_hightlight" />
+
+						<button name="print_myanmar_report" type="object"
+							string="Print Object PDF" class="oe_hightlight" />
+
+						<button name="action_draft" type="object"
+							string="Draft" class="oe_hightlight" />
+
+						<button name="action_confirm" type="object"
+							string="Confirm" class="oe_hightlight" />
+
+						<button name="action_done" type="object"
+							string="Done" class="oe_hightlight" />
+
+						<field name="state" widget="statusbar" statusbar_visible="draft,confirm,done" />
+					</header>
+					<sheet>
+
+						<div class="oe_button_box" name="button_box">
+							<button name="toggle_active" type="object" string="active"
+									class="oe_stat_button" icon="fa-archive">
+								<field name="active" widget="boolean_button"
+									   options="{'terminology': 'archive'}" />
+							</button>
+						</div>
+
+						<field name="image" widget="Image" class="oe_avatar"/>
+						<div class="oe_title">
+							<label for="name"/>
+							<h1>
+								<field name="name" place_holder="Enter Your Name" required="True"/>
+							</h1>
+							<field name="job_type"/>
+						</div>
+						<notebook>
+							<page string="personal Information">
+								<group>
+									<field name="nationality"/>
+								</group>
+							</page>
+							<page string="Native Information">
+								<group>
+									<group>
+										<field name="dob"/>
+										<field name="pob"/>
+									</group>
+									<group>
+										<field name="race"/>
+										<field name="religion"/>
+									</group>
+								</group>
+							</page>
+							<page string="Contact Information">
+								<group>
+									<field name="job_position"/>
+									<field name="phone"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="myanmar_follower"/>
+						<field name="activity_ids" widget="myanmar_activity"/>
+						<field name="message_ids" widget="myanmar_message"/>
+					</div>
+				</form>
+			</field>
+		</record>
+	</data>
+</odoo>

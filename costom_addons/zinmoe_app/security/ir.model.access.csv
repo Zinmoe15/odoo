@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+zinmoe,Zin Moe Kyaw,model_zinmoe_model,base.group_user,1,1,1,1
+
+kyaw,Kyaw Kyaw,model_kyaw_model,,1,1,1,1
+backgroundeducation,Background Education,model_background_education_model,,1,1,1,1
+employmenthistory,Employment History,model_employment_history_model,,1,1,1,1

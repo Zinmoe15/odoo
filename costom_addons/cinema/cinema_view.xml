@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<!-- action of cinema model -->
+		<act_window id="action_cinema_model"
+			name="cinema"
+			res_model="cinema.task"
+			view_mode="tree,form" />
+
+		<menuitem id="cinema_ticket"
+			name="cinema_ticket" />
+
+		<menuitem id="booking" name="Booking" 
+			parent="cinema_ticket"
+			action="action_cinema_model" />
+
+
+		<!-- tree view of cinema model -->
+		<record id="tree_cinema_model" model="ir.ui.view">
+			<field name="name">tree_cinema_model</field>
+			<field name="model">cinema.task</field>
+			<field name="arch" type="xml">
+				<tree string="cinema">
+					<field name="name"/>
+					<field name="cv_image"/>
+					<field name="movie_name"/>
+					<field name="price"/>
+					<field name="seat_number"/>
+					<field name="quantity"/>
+					<field name="time_show"/>
+					<field name="cinema_phone"/>
+					<field name="website"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form View -->
+		<record id="form_cinema_view" model="ir.ui.view">
+			<field name="name">Form_Cinema_View</field>
+			<field name="model">cinema.task</field>
+			<field name="arch" type="xml">
+				<form string="cinema_view">
+					<sheet>
+
+						<!-- <div class="oe_button_box" name="button_box">
+							<button name="toggle_active" type="object" class="oe_state_button" icon="fa-archive">
+								<field name="active" widget="boolean_button" option="{'terminology': 'archive'}" />
+							</button>
+						</div>	 -->
+
+						<field name="cv_image" widget="image" class="oe_avatar" />
+						<div class="oe_title">
+							<label for="name" />
+							<h1>
+								<field name="name" placeholder="Enter Your Name" required="True" />
+							</h1>
+							<field name="job_type" />
+						</div>
+
+						<notebook>
+							<page string="Contact Information">
+								<group string="Contact">
+									<field name="cinema_phone" />
+								</group>
+							</page>
+							<page string="General Information">
+								<group>
+									<group>
+										<field name="price" />
+										<field name="movie_name" />
+										<field name="time_show" />
+									</group>
+									<group>
+										<field name="seat_number" />
+										<field name="quantity" />
+									</group>
+								</group>
+								<group>
+									<field name="website" />
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>	
+
+	</data>
+</odoo>
